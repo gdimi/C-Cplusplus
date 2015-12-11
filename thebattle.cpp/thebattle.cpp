@@ -27,9 +27,7 @@ struct weapon {
 
 class legend{
     private:
-       void create();
        void read();
-       void sort();
        string STRING;
        string scores[5];
        const char *filename;
@@ -44,27 +42,25 @@ class legend{
 void cls();
 void init(player *n, player *m);
 int menu();
-string play(player *n, player *m, legend *ptr);
-string pcnames[3]={"Connan the barbarian","John Rambo","Chuck Norris"};
+const char* play(player *n, player *m, legend *ptr);
+string pcnames[4]={"Connan the barbarian","John Rambo","Chuck Norris","Bruce Lee"};
 weapon knife, axe, stick, nothing;
 weapon weparr[4]={knife, axe, stick, nothing};
 
-void legend::create() {
-    ofstream o(filename);
-}
 void legend::read() {
     int i=0;
    
     ifstream infile;
     infile.open (filename);
    
-    while(!infile.eof()) {// To get you all the lines.
+    while(!infile) {// To get you all the lines.
            getline(infile,STRING); // Saves the line in STRING.
            scores[i]=STRING;
            i++;
     }
     infile.close();
 }
+
 void legend::update(int sc, string pname) {
     for (int i=0;i<5;i++) {
         size_t b = scores[i].find(" ");
@@ -93,13 +89,18 @@ void legend::update(int sc, string pname) {
         }
     }
 }
-void legend::sort() {
-}
+
 void legend::display(){
     for (int i=0;i<5;i++) {
         cout << scores[i] << endl;
     }
 }
+
+legend::legend(){
+    filename="scores.txt";
+    read();
+}
+
 void check_file_exists(legend scores){
 
     ifstream ifile(scores.filename);
@@ -107,12 +108,7 @@ void check_file_exists(legend scores){
         scores.read();
     }else {
         cout << "no score file exists!";
-    //    create();
     }
-}
-legend::legend(){
-    filename="scores.txt";
-    read();
 }
 
 int main(int argc, char *argv[]){
@@ -170,17 +166,14 @@ int main(int argc, char *argv[]){
     }else if (action == 3){
         return 0;
     }
-    //act
-   
 
-   
 }
 
 void init(player *n, player *m){
      /* initialize random seed: */
     srand (time(NULL));
 
-    n->name = pcnames[rand() % 2];
+    n->name = pcnames[rand() % 3];
     n->strength = rand() % 10;
     n->agility = rand() % 10;
     n->defence = rand() % 10;
@@ -224,7 +217,7 @@ int menu(){
     return 0;
 }
 
-string play(player *pc, player *hero,legend *lptr){
+const char* play(player *pc, player *hero,legend *lptr){
     int sump, sumh;
     sump= (pc->agility+pc->strength+pc->defence)*pc->wep.attackscore;
     sumh= (hero->agility+hero->strength+hero->defence)*hero->wep.attackscore;
@@ -237,10 +230,9 @@ string play(player *pc, player *hero,legend *lptr){
     if (sump > sumh){
         cout << "LOOOOOOOOOSER HO-HO-HO!" << endl;
     }else if(sump==sumh){
-        cout << "IT'S A TIE" << endl;
+        cout << "IT'S A TIE (boring...)" << endl;
     }else {
-        cout << "YOU ARE THE WINNER!!!!!!(unexpectable!)" << endl;
-        //lptr->update(sump);
+        cout << "YOU ARE THE WINNER!!!!!!(unexpectable!)" << endl;    
     }
     lptr->update(sumh,hero->name);
 
