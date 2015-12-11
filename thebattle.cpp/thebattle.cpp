@@ -43,7 +43,7 @@ void cls();
 void init(player *n, player *m);
 int menu();
 const char* play(player *n, player *m, legend *ptr);
-string pcnames[4]={"Connan the barbarian","John Rambo","Chuck Norris","Bruce Lee"};
+string pcnames[4]={"Connan the barbarian","John Rambo","Chuck Norris","Bob squarepants"};
 weapon knife, axe, stick, nothing;
 weapon weparr[4]={knife, axe, stick, nothing};
 
