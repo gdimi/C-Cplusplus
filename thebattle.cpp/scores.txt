@@ -1,0 +1,5 @@
+ChuckNorris 200
+Connan 120
+Rambo 85
+BobSquarepants 40
+Human 30
