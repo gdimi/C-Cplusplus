@@ -53,8 +53,7 @@ void legend::read() {
     ifstream infile;
     infile.open (filename);
    
-    while(!infile) {// To get you all the lines.
-           getline(infile,STRING); // Saves the line in STRING.
+    while(getline(infile,STRING)) {// To get you all the lines.
            scores[i]=STRING;
            i++;
     }
