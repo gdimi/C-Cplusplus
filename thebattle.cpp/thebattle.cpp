@@ -66,7 +66,7 @@ void legend::update(int sc, string pname) {
         if (b!= string::npos) {
             if(stoi(scores[i].substr(b),nullptr,0) < sc) {
                 int pos = i;
-                for (int i = pos; i < 4; i++) {
+                for (int i = pos; i < (5-pos); i++) {
                     string temp = scores[i+1];
                     scores[i+1] = scores[i];
                 }
@@ -75,7 +75,7 @@ void legend::update(int sc, string pname) {
                 string ssc = to_string(sc);
                 scores[pos] += ssc;
                 //cout << scores[pos] << endl;
-                cout << "NEW HIGH SCORE!!! " << pos << endl;
+                cout << "NEW HIGH SCORE!!! You are number " << (pos+1) << endl;
                
                 ofstream nscore;
                 nscore.open(filename);
