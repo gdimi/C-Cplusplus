@@ -108,6 +108,7 @@ void check_file_exists(legend scores){
     }else {
         cout << "no score file exists!";
     }
+    ifile.close();
 }
 
 int main(int argc, char *argv[]){
