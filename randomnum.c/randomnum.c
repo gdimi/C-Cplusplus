@@ -20,13 +20,13 @@
 
 
 bool isValueInArray(int val, int *arr, int size);
+int prand(int nums,int max);
+int prandOne(int max, int *arr, int size);
 
 int main()
 {
     int numnums,max;
     int x=0;
-    int prand(int nums,int max);
-
 
     printf(KYEL "***************************\n" RESET);
     printf(KYEL "*" RESET "RANDOM NUMBER GENERATOR" KYEL "*" RESET  "\n");
